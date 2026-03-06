@@ -21,7 +21,13 @@ async function searchMovies (query){
         const data = await response.json()
 
         console.log(data)
-       renderResults(data.Search)
+
+        if(!data.Search){
+          resultContainer.innerHTML = "no movies found"   
+          return 
+        }
+        renderResults(data.Search)  
+       
     }
     catch(error){
         console.error("Fetch error:", error.message)
