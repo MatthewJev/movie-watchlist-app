@@ -7,7 +7,22 @@ const localStorageKey = "watchList"
 let watchList = []
 
 
-inputBtn.addEventListener("click", ()=>searchMovies(input.value))
+inputBtn.addEventListener("click", performSearch)
+input.addEventListener("keydown", (event)=>{
+    if(event.key === "Enter"){
+        performSearch()
+    }
+})
+
+function performSearch(){
+    if (input.value === ""){
+        return
+    }
+    searchMovies(input.value)
+
+    input.value = ''
+}
+
 
 async function searchMovies (query){
 
@@ -34,7 +49,6 @@ async function searchMovies (query){
 
     }
     
-    input.value = ""
 }
 
 
