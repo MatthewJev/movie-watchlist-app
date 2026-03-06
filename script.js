@@ -72,7 +72,7 @@ function loadWatchlist(){
 function renderWatchList(){
     watchListContainer.innerHTML = ""
 
-    watchList.forEach((movie, index)=>{
+    watchList.forEach((movie)=>{
         let removeBtn = document.createElement("button")
         let movieName = document.createElement("p")
 
@@ -81,14 +81,14 @@ function renderWatchList(){
 
         watchListContainer.append(movieName, removeBtn)
 
-        removeBtn.addEventListener("click",()=>removeMovie(index))
+        removeBtn.addEventListener("click",()=>removeMovie(movie))
         
     })
 }
 
 function renderResults(movies){
     resultContainer.innerHTML = ""
-    movies.forEach((movie, index)=>{ 
+    movies.forEach((movie)=>{ 
         let movieName = document.createElement("p")
         let addBtn = document.createElement("button")
         let div = document.createElement("div")
@@ -109,8 +109,9 @@ function renderResults(movies){
     
 }
 
-function removeMovie(index){
-    watchList.splice(index, 1)
+function removeMovie(removeMovie){
+let result = watchList.find(movie=> movie.imdbID = removeMovie.imdbID)
+    watchList.splice(result, 1)
 
     saveWatchlist()
     renderWatchList()
